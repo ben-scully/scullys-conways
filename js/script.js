@@ -1,4 +1,4 @@
-var createBoard = require('./conways/createBoard')
+var createBoard = require('./createBoard')
 var canvas = require('./canvas')
 
 var defaultSize = 10
