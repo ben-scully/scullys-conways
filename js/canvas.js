@@ -1,5 +1,5 @@
-var nextBoard = require('./conways/nextBoard')
-var createBoard = require('./conways/createBoard')
+var nextBoard = require('./nextBoard')
+var createBoard = require('./createBoard')
 var board
 var tileSize = 30
 var canvas
