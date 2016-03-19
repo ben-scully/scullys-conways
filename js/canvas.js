@@ -1,7 +1,7 @@
 var nextBoard = require('./nextBoard')
 var createBoard = require('./createBoard')
 var board
-var tileSize = 30
+var tileSize = 15
 var canvas
 var ctx
 var widthTiles
@@ -15,7 +15,7 @@ module.exports = {
 }
 
 function initCanvas (size) {
-	var num = size || 10
+	var num = size || 20
 	board = createBoard(num)
 	widthTiles = board.length
 	heightTiles = board[0].length
@@ -79,7 +79,7 @@ function updateBoard () {
 }
 
 function repeatUpdateBoard () {
-	int = setInterval(updateBoard, 500)
+	int = setInterval(updateBoard, 400)
 }
 
 function clearBoard () {

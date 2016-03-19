@@ -1,8 +1,8 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-var nextBoard = require('./conways/nextBoard')
-var createBoard = require('./conways/createBoard')
+var nextBoard = require('./nextBoard')
+var createBoard = require('./createBoard')
 var board
-var tileSize = 30
+var tileSize = 15
 var canvas
 var ctx
 var widthTiles
@@ -16,7 +16,7 @@ module.exports = {
 }
 
 function initCanvas (size) {
-	var num = size || 10
+	var num = size || 20
 	board = createBoard(num)
 	widthTiles = board.length
 	heightTiles = board[0].length
@@ -80,7 +80,7 @@ function updateBoard () {
 }
 
 function repeatUpdateBoard () {
-	int = setInterval(updateBoard, 500)
+	int = setInterval(updateBoard, 400)
 }
 
 function clearBoard () {
@@ -94,7 +94,7 @@ function stopIntervals () {
 		clearInterval(int)
 }
 
-},{"./conways/createBoard":3,"./conways/nextBoard":6}],2:[function(require,module,exports){
+},{"./createBoard":3,"./nextBoard":6}],2:[function(require,module,exports){
 var getNeighbours = require('./getNeighbours')
 
 function countAliveNeighbours(cellRow, cellColumn, board) {
@@ -151,7 +151,6 @@ var outOfBounds = require('./outOfBounds')
 
 function indicesOutOfBounds(rowIndex, columnIndex, array2D) {
   return outOfBounds(rowIndex,array2D) || outOfBounds(columnIndex, array2D)
-  // return outOfBounds(rowIndex,array2D) || outOfBounds(columnIndex, array2D[rowIndex])
 }
 
 module.exports = indicesOutOfBounds
@@ -197,7 +196,7 @@ function nextCellState(cellState, neighbourCount) {
 
 module.exports = nextCellState
 
-},{"./overPopulated":9,"./ressurectable":10,"./underPopulated":11}],8:[function(require,module,exports){
+},{"./overPopulated":9,"./ressurectable":10,"./underPopulated":12}],8:[function(require,module,exports){
 function outOfBounds(index, array) {
   return index < 0 || index >= array.length
 }
@@ -216,35 +215,19 @@ function ressurectable(neighbourCount) {
 module.exports = ressurectable
 
 },{}],11:[function(require,module,exports){
+var createBoard = require('./createBoard')
+var canvas = require('./canvas')
+
+var defaultSize = 20
+
+canvas.initCanvas(defaultSize)
+canvas.renderBoard()
+
+},{"./canvas":1,"./createBoard":3}],12:[function(require,module,exports){
 function underPopulated(neighbourCount) {
   return neighbourCount < 2
 }
 
 module.exports = underPopulated
 
-},{}],12:[function(require,module,exports){
-var createBoard = require('./conways/createBoard')
-var canvas = require('./canvas')
-
-var defaultSize = 10
-var board
-
-// #1 initialise board (with default size)
-function initBoard() {
-  board = createBoard(defaultSize)
-}
-initBoard()
-
-// #2 initialise canvas (with dimensions of the board)
-canvas.initCanvas(defaultSize)
-canvas.renderBoard()
-
-// #3 print the canvas (using the board.matrix)
-// redrawCanvas()
-
-// onClick
-// -> clickon a square
-//     updates the board.matrix
-//     reprints the canvas with the updated board.matrix
-
-},{"./canvas":1,"./conways/createBoard":3}]},{},[12]);
+},{}]},{},[11]);
