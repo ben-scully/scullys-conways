@@ -1,0 +1,23 @@
+#headerContainer,
+#canvasContainer,
+#buttonsContainer {
+  display: flex;
+  justify-content: center;
+}
+
+#headerContainer {
+  margin-bottom: 20px;
+}
+
+#header {
+  padding: 20px;
+}
+
+#canvas {
+  /* Testing */
+  background: red;
+}
+
+#buttonsContainer {
+  padding: 20px;
+}
